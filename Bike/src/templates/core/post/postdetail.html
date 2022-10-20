@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center mt-5 card-body rounded" style="background-color: #fff;">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <h2 class="section-heading">{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <div class="row justify-content-between">
+                <a href="{% url 'postspage' %}" class="btn btn-primary">Quay lại</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

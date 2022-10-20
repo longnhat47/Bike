@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            {% if orders %}
+            <table class="table table-bordered dataTable mt-4" id="dataTable" width="100%" cellspacing="0" role="grid"
+                   aria-describedby="dataTable_info" style="width: 100%; background-color: #fff;">
+                <thead>
+                <tr role="row">
+                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                        style="width: 128px;">
+                        Tên Xe
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Position: activate to sort column ascending" style="width: 128px;">Loại thuê
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Position: activate to sort column ascending" style="width: 150px;">Ngày thuê
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Position: activate to sort column ascending" style="width: 150px;">Ngày trả
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Age: activate to sort column ascending" style="width: 36px;">Giá
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Start date: activate to sort column ascending" style="width: 84px;">Trạng thái
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                {% for order in orders %}
+                <tr class="odd">
+                    <td class="sorting_1">{{order.bike.name}}</td>
+                    <td>{{order.type_rent}}</td>
+                    <td>{{order.rent_day_start}}</td>
+                    <td>{{order.rent_day_end}}</td>
+                    <td>{{order.price}}</td>
+                    <td>
+                        {% if order.status %}
+                            Đã xác nhận
+                        {% else %}
+                            Chờ xác nhận
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <h2 class="h2 title mt-4">Bạn chưa có đơn hàng nào <a href="{% url 'rentpage' %}">Đặt ngay</a></h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

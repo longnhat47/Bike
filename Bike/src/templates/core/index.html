@@ -1,0 +1,78 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="slide">
+    <div class="slide-img">
+        <div class="inner-slide">
+            <h1>Uy tín, chất lượng</h1>
+            <span>Luôn đồng hành cùng bạn</span>
+            <br/><br/>
+            <p>
+                <a href="{% url 'rentpage' %}" class="btn btn-primary">Đặt ngay</a>
+            </p>
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="benefit mt-3">
+            <div class="row col">
+                <div class="col-md-12">
+                    <h3 class="title">Lợi ích của 8Bike</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="benefit_content">
+                        <img src="https://chungxe.vn/assets/images/icon/icon1.png" alt="Nhiều lựa chọn">
+                        <div class="benefit_content-discription">
+                            <div class="benefit-title">Nhiều lựa chọn</div>
+                            <p>Hàng trăm loại xe đa dạng ở nhiều địa điểm trên cả nước, phù hợp với mọi mục đích của
+                                bạn</p>
+                        </div>
+                    </div>
+                    <div class="benefit_content">
+                        <img src="https://chungxe.vn/assets/images/icon/icon2.png" alt="Thuận tiện">
+                        <div class="benefit_content-discription">
+                            <div class="benefit-title">Thuận tiện</div>
+                            <p>Dễ dàng tìm kiếm, so sánh và đặt chiếc xe như ý với chỉ vài click chuột</p>
+                        </div>
+                    </div>
+                    <div class="benefit_content">
+                        <img src="https://chungxe.vn/assets/images/icon/icon3.png" alt="Giá cả cạnh tranh">
+                        <div class="benefit_content-discription">
+                            <div class="benefit-title">Giá cả cạnh tranh</div>
+                            <p>Giá thuê được niêm yết công khai và rẻ hơn tới 10% so với giá truyền thống</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="benefit_content">
+                        <img src="https://chungxe.vn/assets/images/icon/icon4.png" alt="Tin cậy">
+                        <div class="benefit_content-discription">
+                            <div class="benefit-title">Tin cậy</div>
+                            <p>Các xe đều có thời gian sử dụng dưới 3 năm và được bảo dưỡng thường xuyên</p>
+                        </div>
+                    </div>
+                    <div class="benefit_content">
+                        <img src="https://chungxe.vn/assets/images/icon/icon5.png" alt="Hỗ trợ 24/7">
+                        <div class="benefit_content-discription">
+                            <div class="benefit-title">Hỗ trợ 24/7</div>
+                            <p>Có nhân viên hỗ trợ khách hàng trong suốt quá trình thuê xe</p>
+                        </div>
+                    </div>
+                    <div class="benefit_content">
+                        <img src="https://chungxe.vn/assets/images/icon/icon6.png" alt="Bảo hiểm">
+                        <div class="benefit_content-discription">
+                            <div class="benefit-title">Bảo hiểm</div>
+                            <p>An tâm với các gói bảo hiểm thuê xe tự lái trong suốt quá trình thuê xe</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

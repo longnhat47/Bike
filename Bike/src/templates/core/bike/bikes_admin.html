@@ -1,0 +1,36 @@
+{% extends 'core/admin.html' %}
+{% load static %}
+{% block content %}
+<div class="rent">
+    <a href="{% url 'add_bike' %}" class="btn btn-primary mb-5">Thêm Xe</a>
+    <div class="row">
+        {% for bike in bikes %}
+        <div class="card mr-2" style="width: 16rem; height: 472px;">
+            {% if bike.image %}
+                <img src="{{ bike.image.url }}" class="card-img-top" alt="bike">
+            {% endif %}
+            <div class="card-body">
+                <a href="#" class="card-title">{{ bike.name }}</a>
+                <p class="card-text">{{ bike.type }}</p>
+                <p class="card-text">{{ bike.license_plate }}</p>
+                <p class="card-text">{{ bike.type.price }}đ</p>
+                <p class="card-text">
+                    {% if bike.status %}
+                        Active
+                    {% else %}
+                        Not Active
+                    {% endif %}
+                </p>
+                <div class="d-flex align-items-center mt-4 mb-0">
+                    <a class="btn btn-primary mr-3" href="{% url 'update_bike' bike.id %}">Sửa</a>
+                    <a class="btn btn-primary" href="{% url 'delete_bike' bike.id %}">Xóa</a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

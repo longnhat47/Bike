@@ -1,0 +1,67 @@
+{% load static %}
+<!--NAVBAR-->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <a class="navbar-brand" href="{% url 'home' %}">
+        8BIKE
+        <!--    <img class="logo" src="../static/core/img/logo.png">-->
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!--      <li class="nav-item active">-->
+            <!--        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+            <!--      </li>-->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'rentpage' %}">Thuê xe</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Danh sách xe
+                </a>
+                <div class="dropdown-menu">
+                    {% for type in types %}
+                    <a class="dropdown-item" href="{% url 'bike-type-page' type.id %}">{{ type.name }}</a>
+                    <div class="dropdown-divider"></div>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'postspage' %}">Tin tức</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">Về chúng tôi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Hỗ trợ</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-0">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Cá nhân
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">{{ user.username }}</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'update_profile' %}">Cập nhật thông tin</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'rent-list' %}">Đơn hàng</a>
+                </div>
+            </li>
+            {% endif %}
+            <li class="nav-item ml-2">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn btn-info">Đăng xuất</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn btn-info">Đăng nhập</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- End Navbar -->

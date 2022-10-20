@@ -1,0 +1,93 @@
+{% extends 'core/admin.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            {% if users %}
+            <table class="table table-bordered dataTable mt-4" id="dataTable" width="100%" cellspacing="0" role="grid"
+                   aria-describedby="dataTable_info" style="width: 100%; background-color: #fff;">
+                <thead>
+                <tr role="row">
+                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                        style="width: 100px;">
+                        User Name
+                    </th>
+                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                        style="width: 128px;">
+                        Tên
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Position: activate to sort column ascending" style="width: 20px;">Giới tính
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Position: activate to sort column ascending" style="width: 120px;">Ngày sinh
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Position: activate to sort column ascending" style="width: 150px;">CMND
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Age: activate to sort column ascending" style="width: 136px;">Địa chỉ
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Start date: activate to sort column ascending" style="width: 50px;">Trạng thái
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Age: activate to sort column ascending" style="width: 36px;">Quyền
+                    </th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                        aria-label="Start date: activate to sort column ascending" style="width: 84px;">
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                {% for user in users %}
+                {% if user %}
+                <tr class="odd">
+                    <td class="sorting_1">{{ user.username }}</td>
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{% if user.gender %}
+                            Nam
+                        {% else %}
+                            Nữ
+                        {% endif %}
+                    </td>
+                    <td>{{ user.birthday }}</td>
+                    <td>{{ user.cmnd }}</td>
+                    <td>{{ user.address }}</td>
+                    <td>
+                        {% if user.is_active %}
+                            Hoạt động
+                        {% else %}
+                            Bị khóa
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user.is_staff %}
+                            Nhân viên
+                        {% elif user.is_superuser %}
+                            Quản trị viên
+                        {% else %}
+                            Khách hàng
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'user-detail-admin' user.id %}" class="btn btn-primary">
+                            Chi tiết
+                        </a>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

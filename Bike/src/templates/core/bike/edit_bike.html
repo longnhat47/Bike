@@ -1,0 +1,57 @@
+{% extends 'core/admin.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1>Sửa chi tiết xe</h1>
+    <div class="form-group">
+        <form enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <p>
+                <label for="id_name">Name:</label>
+                <input type="text" name="name" maxlength="255" class="form-control" required="" id="id_name" value="{{ bike.name }}">
+            </p>
+            <p>
+                <label for="id_type">Type:</label>
+                <select name="type" class="form-control" required="" id="id_type">
+                    {% for type in types %}
+                        {% if bike.type.id == type.id %}
+                            <option value="{{ type.id }}" selected>{{ type.name }}</option>
+                        {% else %}
+                            <option value="{{ type.id }}">{{ type.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                <label for="id_license_plate">License plate:</label>
+                <input type="text" name="license_plate" maxlength="255" class="form-control" id="id_license_plate" value="{{ bike.license_plate }}">
+            </p>
+            <p>
+                <label for="id_image">Image:</label>
+                <a href="/media/{{ bike.image }}">{{ bike.image }}</a>
+                <input type="file" name="image" accept="image/*" class="form-control" id="id_image">
+            </p>
+            <p>
+                <label for="id_status">Status:</label>
+                <input type="checkbox" name="status" class="form-check-input ml-4" id="id_status">
+            </p>
+            <button type="submit" class="btn btn-primary">Sửa</button>
+            <a href="{% url 'bike_admin' %}" class="btn btn-primary">Quay lại</a>
+        </form>
+    </div>
+</div>
+<script>
+    function status_check() {
+      document.getElementById("id_status").checked = true;
+    }
+    function status_nocheck() {
+      document.getElementById("id_status").checked = false;
+    }
+    {% if bike.status %}
+        status_check();
+    {% else %}
+        status_nocheck();
+    {% endif %}
+
+</script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'core/admin.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1>Cảnh báo</h1>
+        <div class="form-group">
+        <form method="post">
+            {% csrf_token %}
+            <h2 class="h2 title">Đơn hàng:</h2>
+            <div class="row" style="color: #333;">
+                <h3 class="h3 mr-1">Tên khách hàng: </h3>
+                <h3 class="sorting_1">{{ orders.customer.last_name }} {{ orders.customer.first_name }}</h3>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Ngày sinh: </h5>
+                <h5 class="sorting_1">{{ orders.customer.birthday|date:"d-M-y" }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Địa chỉ: </h5>
+                <h5 class="sorting_1">{{ orders.customer.address }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Số điện thoại: </h5>
+                <h5 class="sorting_1">{{ orders.customer.phone }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Tên xe: </h5>
+                <h5 class="sorting_1">{{ orders.bike.name }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Ngày thuê: </h5>
+                <h5>{{ orders.rent_day_start|date:"d-M-y" }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Ngày trả: </h5>
+                <h5>{{ orders.rent_day_end|date:"d-M-y" }}</h5>
+            </div>
+
+            <strong>Bạn có chắc không?</strong>
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <a href="{% url 'order-detail-admin' orders.id %}" class="btn btn-primary">Quay lại</a>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

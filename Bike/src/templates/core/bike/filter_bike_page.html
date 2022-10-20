@@ -1,0 +1,68 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container pt-4 pb-4">
+    <div class="row">
+        <div class="rent row">
+            <div class="rent-filters col-4">
+                <div class="rent-filter rent-filter-day">
+                    <h5>Ngày thuê</h5>
+                    <input type="datetime-local">
+                </div>
+                <div class="rent-filter rent-filter-day">
+                    <h5>Ngày trả</h5>
+                    <input type="datetime-local">
+                </div>
+                <div class="rent-filter rent-filter-name">
+                    <h5>Nhập tên xe</h5>
+                    <input type="text">
+                </div>
+                <div class="rent-filter rent-filter-type">
+                    <h5>Loại xe</h5>
+                    <select id="type-bike">
+                        <option value="0">---Chọn---</option>
+                        {% for type in types %}
+                            <option value="{{ type.id }}">{{ type.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="rent-filter rent-filter-submit">
+                    <input type="submit" value="Tìm" class="btn btn-info btn-rent-submit">
+                </div>
+            </div>
+            <div class="rent-list-container col-8">
+                <div class="rent-list-filter">
+                    <select id="filter-price">
+                        <option value="0">---Chọn---</option>
+                        <option value="1">Giảm dần</option>
+                        <option value="2">Tăng dần</option>
+                    </select>
+                </div>
+                <div class="rent-list-bikes">
+                    {% for bike in bikes %}
+                        {% if bike.status %}
+                        <div class="rent-item">
+                            <div class="item-img">
+                                {% if bike.image %}
+                                    <img src="{{ bike.image.url }}" class="img-product"></img>
+                                {% endif %}
+                            </div>
+                            <div class="item-about">
+                                <a href="#">{{ bike.name }}</a>
+                                <p>{{ bike.type }}</p>
+                            </div>
+                            <div class="item-rent">
+                                <h4>{{ bike.type.price }}đ</h4>
+                                <a href="{% url 'rent-bike' bike.id %}" class="btn btn-info">Thuê xe</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

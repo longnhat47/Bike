@@ -1,0 +1,16 @@
+{% extends 'core/admin.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1>Sửa bài viết</h1>
+        <div class="form-group">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Sửa</button>
+            <a href="{% url 'post_admin' %}" class="btn btn-primary">Quay lại</a>
+        </form>
+        </div>
+    </div>
+
+{% endblock %}

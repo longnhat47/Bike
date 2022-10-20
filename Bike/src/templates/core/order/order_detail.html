@@ -1,0 +1,67 @@
+{% extends 'core/admin.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <form method="POST">
+            {% csrf_token %}
+        <div class="col-sm-12">
+            <div class="row" style="color: #333;">
+                <h3 class="h3 mr-1">Tên khách hàng: </h3>
+                <h3 class="sorting_1">{{ order.customer.last_name }} {{ order.customer.first_name }}</h3>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Giới tính: </h5>
+                <h5 class="sorting_1">
+                {% if order.customer.gender %}
+                    Nam
+                {% else %}
+                    Nữ
+                {% endif %}
+                </h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Ngày sinh: </h5>
+                <h5 class="sorting_1">{{ order.customer.birthday }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">CMND: </h5>
+                <h5 class="sorting_1">{{ order.customer.cmnd }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Địa chỉ: </h5>
+                <h5 class="sorting_1">{{ order.customer.address }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Số điện thoại: </h5>
+                <h5 class="sorting_1">{{ order.customer.phone }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Tên xe: </h5>
+                <h5 class="sorting_1">{{ order.bike.name }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Loại thuê: </h5>
+                <h5>{{ order.type_rent }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Ngày thuê: </h5>
+                <h5>{{ order.rent_day_start }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Ngày trả: </h5>
+                <h5>{{ order.rent_day_end }}</h5>
+            </div>
+            <div class="row" style="color: #333;">
+                <h5 class="h5 mr-1">Giá: </h5>
+                <h5>{{ order.price }}</h5>
+            </div>
+            <div class="row">
+                <input type="submit" class="btn btn-primary mr-3" value="Xác nhận"></input>
+                <a href="{% url 'delete-order' order.id %}" class="btn btn-danger">Xóa</a>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

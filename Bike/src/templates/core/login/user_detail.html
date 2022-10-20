@@ -1,0 +1,72 @@
+{% extends 'core/admin.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if user %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="col-sm-12">
+                <div class="row" style="color: #333;">
+                    <h3 class="h3 mr-1">Tên khách hàng: </h3>
+                    <h3 class="sorting_1">{{ user.first_name }} {{ user.last_name }}</h3>
+                </div>
+                <div class="row" style="color: #333;">
+                    <h5 class="h5 mr-1">Giới tính: </h5>
+                    <h5 class="sorting_1">
+                        {% if user.gender %}
+                        Nam
+                        {% else %}
+                        Nữ
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="row" style="color: #333;">
+                    <h5 class="h5 mr-1">Ngày sinh: </h5>
+                    <h5 class="sorting_1">{{ user.birthday }}</h5>
+                </div>
+                <div class="row" style="color: #333;">
+                    <h5 class="h5 mr-1">CMND: </h5>
+                    <h5 class="sorting_1">{{ user.cmnd }}</h5>
+                </div>
+                <div class="row" style="color: #333;">
+                    <h5 class="h5 mr-1">Địa chỉ: </h5>
+                    <h5 class="sorting_1">{{ user.address }}</h5>
+                </div>
+                <div class="row" style="color: #333;">
+                    <h5 class="h5 mr-1">Số điện thoại: </h5>
+                    <h5 class="sorting_1">{{ user.phone }}</h5>
+                </div>
+                <div class="row" style="color: #333;">
+                    <h5 class="h5 mr-1">Trạng thái: </h5>
+                    <h5 class="sorting_1">
+                        {% if user.is_active %}
+                        Hoạt động
+                        {% else %}
+                        Bị khóa
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="row" style="color: #333;">
+                    <h5 class="h5 mr-1">Quyền: </h5>
+                    <h5>
+                        {% if user.is_staff %}
+                        Nhân viên
+                        {% elif user.is_superuser %}
+                        Quản trị viên
+                        {% else %}
+                        Khách hàng
+                        {% endif %}
+                    </h5>
+                </div>
+                <div class="row">
+                    <input type="submit" class="btn btn-primary mr-3" value="Cấp quyền nhân viên">
+                    <a href="{% url 'edit-user-admin' user.id %}" class="btn btn-primary mr-3">Sửa</a>
+                    <a href="{% url 'user-admin' %}" class="btn btn-danger">Quay lại</a>
+                </div>
+            </div>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
